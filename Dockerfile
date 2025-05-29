@@ -4,6 +4,9 @@ FROM php:8.2-apache
 # Habilita mod_rewrite para Slim
 RUN a2enmod rewrite
 
+# Instala extensiones necesarias para MySQL
+RUN docker-php-ext-install pdo pdo_mysql
+
 # Copia el contenido de tu proyecto al contenedor
 COPY . /var/www/html/
 
