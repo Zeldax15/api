@@ -1,7 +1,5 @@
 <?php
-echo "<pre>";
-print_r($_ENV);
-exit;
+
 use Slim\Factory\AppFactory;
 
 
