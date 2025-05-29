@@ -1,13 +1,19 @@
 <?php
-
+echo "<pre>";
+print_r($_ENV);
+exit;
 use Slim\Factory\AppFactory;
-use Dotenv\Dotenv;
+
 
 require __DIR__ . '/../vendor/autoload.php';
 
 // Cargar variables de entorno
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
-$dotenv->load();
+$this->pdo = new PDO(
+    "mysql:host=" . $_ENV['DB_HOST'] . ";dbname=" . $_ENV['DB_NAME'] . ";charset=utf8mb4",
+    $_ENV['DB_USER'],
+    $_ENV['DB_PASS']
+);
+
 
 $app = AppFactory::create();
 
