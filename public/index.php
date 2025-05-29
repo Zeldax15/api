@@ -2,23 +2,16 @@
 
 use Slim\Factory\AppFactory;
 
-
 require __DIR__ . '/../vendor/autoload.php';
 
-// Cargar variables de entorno
-$this->pdo = new PDO(
-    "mysql:host=" . $_ENV['DB_HOST'] . ";dbname=" . $_ENV['DB_NAME'] . ";charset=utf8mb4",
-    $_ENV['DB_USER'],
-    $_ENV['DB_PASS']
-);
-
-
+// Crear la app Slim
 $app = AppFactory::create();
 
-// Middleware para errores
+// Middleware de errores (útil para desarrollo y debugging)
 $app->addErrorMiddleware(true, true, true);
 
-// Incluir las rutas
+// Incluir las rutas definidas en src/routes.php
 (require __DIR__ . '/../src/routes.php')($app);
 
+// Ejecutar la aplicación
 $app->run();
